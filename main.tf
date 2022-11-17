@@ -15,8 +15,11 @@ locals {
   s3_origin_id = "myS3Origin"
 }
 resource "aws_cloudfront_origin_access_control" "adonis-example" {
-  name = "adonis-s3-bucket"
-
+  name                              = "adonis-s3-bucket"
+  description                       = "Example Policy"
+  origin_access_control_origin_type = "s3"
+  signing_behavior                  = "always"
+  signing_protocol                  = "sigv4"
 }
 
 resource "aws_cloudfront_distribution" "s3_distribution" {
