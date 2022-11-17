@@ -6,15 +6,17 @@ resource "aws_s3_bucket" "b" {
   }
 }
 
+resource "aws_s3_bucket_acl" "b_acl" {
+  bucket = aws_s3_bucket.b.id
+  acl    = "private"
+}
+
 locals {
   s3_origin_id = "myS3Origin"
 }
 resource "aws_cloudfront_origin_access_control" "adonis-example" {
-  name                              = "adonis-s3-bucket"
-  description                       = "Example Policy"
-  origin_access_control_origin_type = "s3"
-  signing_behavior                  = "always"
-  signing_protocol                  = "sigv4"
+  name = "adonis-s3-bucket"
+
 }
 
 resource "aws_cloudfront_distribution" "s3_distribution" {
