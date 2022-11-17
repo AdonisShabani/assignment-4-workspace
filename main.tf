@@ -16,6 +16,11 @@ resource "aws_s3_object" "object" {
   etag = filemd5("/Users/adonisshabani/Desktop/index.html")
 }
 
+resource "aws_s3_bucket_acl" "b_acl" {
+  bucket = aws_s3_bucket.b.id
+  acl    = "private"
+}
+
 locals {
   s3_origin_id = "myS3Origin"
 }
