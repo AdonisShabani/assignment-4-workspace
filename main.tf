@@ -1,5 +1,5 @@
 resource "aws_s3_bucket" "b" {
-  bucket = "adonis-bucket"
+  bucket = "adonis-bucket-s3-assigment"
 
   tags = {
     Name = "adonis-bucket-assignment"
