@@ -17,7 +17,7 @@ resource "aws_s3_object" "object" {
 }
 
 resource "aws_s3_bucket_acl" "b_acl" {
-  bucket = aws_s3_bucket.b.id
+  bucket = aws_s3_bucket.b.bucket
   acl    = "private"
 }
 
@@ -46,7 +46,7 @@ resource "aws_cloudfront_distribution" "s3_distribution" {
 
   logging_config {
     include_cookies = false
-    bucket          = "mylogs.s3.amazonaws.com"
+    bucket          = "aws_s3_bucket.b.bucket"
     prefix          = "myprefix"
   }
 
