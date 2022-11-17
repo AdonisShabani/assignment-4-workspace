@@ -14,8 +14,8 @@ resource "aws_s3_bucket_acl" "b_acl" {
 locals {
   s3_origin_id = "myS3Origin"
 }
-resource "aws_cloudfront_origin_access_control" "example" {
-  name                              = "example"
+resource "aws_cloudfront_origin_access_control" "adonis-example" {
+  name                              = "adonis-s3-bucket"
   description                       = "Example Policy"
   origin_access_control_origin_type = "s3"
   signing_behavior                  = "always"
@@ -25,7 +25,7 @@ resource "aws_cloudfront_origin_access_control" "example" {
 resource "aws_cloudfront_distribution" "s3_distribution" {
   origin {
     domain_name              = aws_s3_bucket.b.bucket_regional_domain_name
-    origin_access_control_id = aws_cloudfront_origin_access_control.example.id
+    origin_access_control_id = aws_cloudfront_origin_access_control.adonis-example.id
     origin_id                = local.s3_origin_id
   }
 
